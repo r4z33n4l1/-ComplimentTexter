@@ -10,6 +10,7 @@ twilio_key = os.environ['TWIL_AUTH']
 twilio_sid = os.environ['TWIL_SID']
 sender = os.environ['SEND']
 receiver = os.environ['REC1']
+receiver2 = os.environ['REC2']
 
 openai.api_key = key
 client = Client(twilio_sid, twilio_key)
@@ -32,3 +33,9 @@ message = client.messages.create(
     from_=sender,
     to=receiver)
 print(message.sid)
+
+message2 = client.messages.create(
+  body=store,
+  from_=sender,
+  to=receiver2)
+print(message2.sid)
