@@ -2,11 +2,14 @@ import os, dotenv, openai, sys
 from twilio.rest import Client
 #use dotenv to load the API key from the .env file
 
-key = dotenv.get_key(".env", "OPEN_KEY")
-twilio_key = dotenv.get_key(".env", "twil_auth")
-twilio_sid = dotenv.get_key(".env", "twil_sid")
-sender = dotenv.get_key(".env", "number_send")
-receiver = dotenv.get_key(".env", "number_rec")
+dotenv.load_dotenv()
+
+
+key = os.environ['OPEN_KEY']
+twilio_key = os.environ['TWIL_AUTH']
+twilio_sid = os.environ['TWIL_SID']
+sender = os.environ['SEND']
+receiver = os.environ['REC1']
 
 openai.api_key = key
 client = Client(twilio_sid, twilio_key)
