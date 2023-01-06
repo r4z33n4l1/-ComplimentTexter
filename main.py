@@ -1,4 +1,4 @@
-import os, dotenv, openai, sys
+import os, dotenv, openai, sys, random
 from twilio.rest import Client
 #use dotenv to load the API key from the .env file
 
@@ -15,7 +15,7 @@ receiver2 = os.environ['REC2']
 openai.api_key = key
 client = Client(twilio_sid, twilio_key)
 
-
+'''
 response = openai.Completion.create(
   model="text-davinci-003",
   prompt="I am someone who will say a pickup line. I will pick a completely random pickup line today. Today my pickup line is: ",
@@ -25,8 +25,17 @@ response = openai.Completion.create(
   frequency_penalty=0.0,
   presence_penalty=0.0
 )
+'''
+#read a random line from compliments.txt and store it in a variable
 
-store = response.choices[0].text
+with open('compliments.txt') as f:
+    lines = f.readlines()
+    compliment = random.choice(lines)
+    
+print(compliment)
+
+
+store = compliment
 print(store)
 message = client.messages.create(
     body=store,
